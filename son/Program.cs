@@ -1,3 +1,6 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using son.Data;
 namespace son
 {
     public class Program
@@ -5,6 +8,8 @@ namespace son
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<sonContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("sonContext") ?? throw new InvalidOperationException("Connection string 'sonContext' not found.")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
