@@ -17,9 +17,11 @@ public partial class Class
 
     public string? RoomName { get; set; }
 
+    public string? ClassName { get; set; }
+
     public virtual Course Course { get; set; } = null!;
 
-    public virtual ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
+    public virtual ICollection<Grade> Grades { get; set; } = new List<Grade>();
 
     public virtual Teacher? Teacher { get; set; }
 }

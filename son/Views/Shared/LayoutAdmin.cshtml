@@ -314,12 +314,12 @@
             <!-- Start right Content here -->
             <!-- ============================================================== -->
             <div class="main-content">
-
+            <div class="page-content">
                <!-- content  -->
                 @RenderBody()
                 <!-- End Page-content -->
 
-
+                </div>
                 <footer class="footer">
                     <div class="container-fluid">
                         <div class="row">
@@ -386,6 +386,8 @@
 
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
+
+     @RenderSection("Scripts", required: false)
 
         <!-- JAVASCRIPT -->
         <script src="~/assets/libs/jquery/jquery.min.js"></script>

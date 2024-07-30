@@ -23,7 +23,7 @@ public partial class Student
 
     public string? Username { get; set; }
 
-    public virtual ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
+    public virtual ICollection<Grade> Grades { get; set; } = new List<Grade>();
 
     public virtual Role? Role { get; set; }
 }
