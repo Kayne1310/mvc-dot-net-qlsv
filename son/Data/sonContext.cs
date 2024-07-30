@@ -13,7 +13,19 @@ namespace son.Data
             : base(options)
         {
         }
+        public DbSet<son.Models.Teacher> Teachers { get; set; } = default!;
 
-     
-    }
+		public virtual DbSet<Class> Classes { get; set; }
+
+		public virtual DbSet<Course> Courses { get; set; }
+
+		public virtual DbSet<Enrollment> Enrollments { get; set; }
+
+		public virtual DbSet<Grade> Grades { get; set; }
+
+		public virtual DbSet<Role> Roles { get; set; }
+
+		public virtual DbSet<Student> Students { get; set; }
+
+	}
 }
