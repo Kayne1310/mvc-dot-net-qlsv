@@ -7,6 +7,7 @@ public partial class Role
 {
     public int RoleId { get; set; }
 
+    // test
     public string? RoleName { get; set; }
 
     public virtual ICollection<Student> Students { get; set; } = new List<Student>();
