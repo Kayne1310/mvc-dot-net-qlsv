@@ -1,0 +1,63 @@
+﻿@model son.Models.Teacher
+
+@{
+    ViewData["Title"] = "EditTE";
+    Layout = "~/Views/Shared/LayoutTeacher.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="row" style="display: flex; justify-content: center; margin: 50px;">
+        <div class="col-lg-6">
+            <div class="card ">
+                <div class="card-body">
+                    <h5 class="card-title">Edit info Teacher</h5>
+
+                    <form asp-action="EditTE" asp-controller="Teachers">
+                        <input type="hidden" asp-for="TeacherId" />
+                        <div class="mb-3 ">
+                            <label class="form-label pt-0">Full Name</label>
+                            <div class="">
+                                <input asp-for="@Model.Name" class="form-control" type="text" id="example-email-input1"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 ">
+                            <label class="form-label">Address</label>
+                            <div class="">
+                                <input asp-for="@Model.Address" class="form-control" type="text" id="example-password-input1"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 ">
+                            <label class="form-label">Phone</label>
+                            <div class="">
+                                <input asp-for="@Model.PhoneNumber" class="form-control" type="text" id="example-password-input01"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 ">
+                            <label class="form-label">Email</label>
+                            <div class="">
+                                <input asp-for="@Model.Email" class="form-control" type="text" id="example-password-input01" />
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-lg">Edit</button>
+                    </form>
+                </div>
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col -->
+
+    </div>
+</body>
+</html>
+
+
+
+
+

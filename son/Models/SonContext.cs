@@ -27,7 +27,6 @@ public partial class SonContext : DbContext
 
     public virtual DbSet<Teacher> Teachers { get; set; }
 
- 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Class>(entity =>

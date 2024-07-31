@@ -1,0 +1,72 @@
+﻿@model son.Models.Student
+
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "/Views/Shared/LayoutStudent.cshtml";
+}
+
+<style>
+    
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #BA68C8;
+    }
+
+    .profile-button {
+        background: #BA68C8;
+        box-shadow: none;
+        border: none;
+    }
+
+        .profile-button:hover {
+            background: #682773;
+        }
+
+        .profile-button:focus {
+            background: #682773;
+            box-shadow: none;
+        }
+
+        .profile-button:active {
+            background: #682773;
+            box-shadow: none;
+        }
+
+    .back:hover {
+        color: #682773;
+        cursor: pointer;
+    }
+</style>
+    <div class="container rounded bg-white mt-5">
+        <div >
+        <form asp-action="Profile" asp-controller="Students">
+            <div class="col-md-12">
+                <div class="p-3 py-5">
+                    <input type="hidden" asp-for="@Model.StudentId"/>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 class="text-right">Edit Profile</h3>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><input asp-for="@Model.Username" type="text" class="form-control" readonly></div>
+                        <div class="col-md-6"><input asp-for="@Model.Address" type="text" class="form-control"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><input asp-for="@Model.Email" type="text" class="form-control"></div>
+                        <div class="col-md-6"><input asp-for="@Model.PhoneNumber" type="text" class="form-control"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><input asp-for="@Model.Name" type="text" class="form-control" ></div>
+                        <div class="col-md-6"><input asp-for="@Model.MajorName" type="text" class="form-control" readonly></div>
+                    </div>
+                    <div class="mt-5 text-right">
+                        <button class="btn btn-primary profile-button" value="Save" type="submit">Save Profile</button>
+                     </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+
+

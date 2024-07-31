@@ -17,8 +17,6 @@ public partial class Teacher
 
     public string? PhoneNumber { get; set; }
 
-    public string? RandomKey { get; set; }
-
     public int? RoleId { get; set; }
 
     public string? Username { get; set; }

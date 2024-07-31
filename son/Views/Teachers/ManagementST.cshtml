@@ -1,0 +1,59 @@
+﻿@model IEnumerable<son.Models.Student>
+
+@{
+    ViewData["Title"] = "ManagementST";
+    Layout = "~/Views/Shared/LayoutTeacher.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h5 class="card-title">Management Student</h5>
+                <div class="table-responsive">
+                    <table id="datatable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Teacher Name</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Major</th>
+                                <th>Phone number</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var student in Model)
+                            {
+                                <tr>
+                                    <td>@student.StudentId</td>
+                                    <td>@student.Name</td>
+                                    <td>@student.Address</td>
+                                    <td>@student.Email</td>
+                                    <td>@student.MajorName</td>
+                                    <td>@student.PhoneNumber</td>
+                                    <td>
+                                        <a asp-action="EditST" asp-route-id="@student.StudentId" style="text-decoration: none;">
+                                            <button type="button" id="kayne" class="btn btn-outline-dark px-4 d-flex gap-2 me-2" style="display:inline !important">
+                                                Edit
+                                            </button>
+                                        </a>
+                                        <a asp-action="DeleteST" asp-route-id="@student.StudentId" style="text-decoration: none;">
+                                            <button type="button" id="kayne" class="btn btn-outline-dark px-4 d-flex gap-2" style="display:inline !important">
+                                                Delete
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
