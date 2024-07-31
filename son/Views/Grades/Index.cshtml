@@ -1,0 +1,56 @@
+﻿@model IEnumerable<son.ViewModels.GradeViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h1>List Grade</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+
+<div class="col-md-12 co-xl-12" style="background:while">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">List CLass </h5>
+
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="thead-default">
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Course </th>
+                            <th>Class</th>
+                            <th>Grade</th>
+
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>@item.StudentName</td>
+                                <td> @item.CourseName</td>
+                                <td> @item.ClassName</td>
+                                <td>@item.GradeStudent</td>
+                                <td>
+                                    <div class="">
+                                        <a asp-action="Edit" asp-route-id="@item.GradeId"><i class="fa fa-edit me-2 font-size-20"></i></a>
+                                        <a asp-action="Delete" asp-route-id="@item.GradeId"><i class=" mdi mdi-delete font-size-22"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@model son.Models.Course
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "/Views/Shared/LayoutAdmin.cshtml";
+}
+
+
+
+<div class="col-lg-10" style="margin: 0 auto;">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Edit Class</h5>
+
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="CourseId" />
+                <div class="mb-3 row">
+                    <label asp-for="CourseName" class="col-sm-2 form-label">Course Name</label>
+                    <div class="col-sm-10">
+                        <input asp-for="CourseName" class="form-control">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label asp-for="CourseDescription" class="col-sm-2 form-label">Teacher</label>
+                    <div class="col-sm-10">
+                        <input asp-for="CourseDescription" class="form-control">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label asp-for="Credits" class="col-sm-2 form-label">Year</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Credits" class="form-control" />
+                    </div>
+                </div>
+
+               
+
+                <button type="submit" class="btn btn-primary w-lg">Edit Class</button>
+                <a asp-action="Index" class="btn btn-primary w-lg " style="background:red">  Back To List</a>
+
+            </form>
+        </div>
+    </div>
+    <!-- end card -->
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

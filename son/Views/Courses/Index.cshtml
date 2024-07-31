@@ -1,0 +1,52 @@
+﻿@model IEnumerable<son.Models.Course>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h1>List Course</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Course </a>
+</p>
+<div class="col-md-12 co-xl-12" style="background:while">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">List CLass </h5>
+
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="thead-default">
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Course Description</th>
+                            <th>Credits</th>
+                            
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>@item.CourseName</td>
+                                <td> @item.CourseDescription</td>
+                                <td>@item.Credits</td>
+                                <td>
+                                    <div class="">
+                                        <a asp-action="Edit" asp-route-id="@item.CourseId"><i class="fa fa-edit me-2 font-size-20"></i></a>
+                                        <a asp-action="Delete" asp-route-id="@item.CourseId"><i class=" mdi mdi-delete font-size-22"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
