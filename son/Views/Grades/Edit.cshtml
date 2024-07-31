@@ -1,0 +1,72 @@
+﻿@model son.Models.Grade
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "/Views/Shared/LayoutTeacher.cshtml";
+}
+
+<div class="col-lg-10" style="margin: 0 auto;">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Edit Class</h5>
+
+
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="GradeId" />
+                <div class="mb-3 row">
+                    <label asp-for="GradeStudent" class="col-sm-2 form-label"></label>
+                    <div class="col-sm-10">
+
+                        <input asp-for="GradeStudent" class="form-control" />
+                        <span asp-validation-for="GradeStudent" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="CourseId" class="col-sm-2 form-label"></label>
+                    <div class="col-sm-10">
+
+                        <select asp-for="CourseId" class="form-control" asp-items="ViewBag.CourseId"></select>
+                        <span asp-validation-for="CourseId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="ClassId" class="col-sm-2 form-label"></label>
+                    <div class="col-sm-10">
+                        <select asp-for="ClassId" class="form-control" asp-items="ViewBag.ClassId"></select>
+                        <span asp-validation-for="ClassId" class="text-danger"></span>
+
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="StudentId" class="col-sm-2 form-label"></label>
+                    <div class="col-sm-10">
+                        <select asp-for="StudentId" class="form-control" asp-items="ViewBag.StudentId"></select>
+                        <span asp-validation-for="StudentId" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+
+                <button type="submit" class="btn btn-primary w-lg">Edit Class</button>
+                <a asp-action="Index" class="btn btn-primary w-lg " style="background:red">  Back To List</a>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+
+

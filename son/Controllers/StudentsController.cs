@@ -152,6 +152,57 @@ namespace son.Controllers
         }
         #endregion
 
+        #region Change password
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(string oldPassword, string newPassword, string confirmNewPassword)
+        {
+            if (string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(confirmNewPassword))
+            {
+                return View();
+            }
+
+            // Get the currently logged-in user
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return RedirectToAction("Index", "Home"); // Or another action for unauthorized access
+            }
+
+            var student = await _context.Students.FindAsync(int.Parse(userId));
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            // Validate old password
+            if (student.Password != oldPassword)
+            {
+                return View();
+            }
+
+            // Validate new password and confirmation
+            if (newPassword != confirmNewPassword)
+            {
+                return View();
+            }
+
+            // Update password
+            student.Password = newPassword;
+            _context.Update(student);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("HomePage", "Students");
+        }
+
+        #endregion
+
         [HttpGet]
         public IActionResult HomePage()
         {

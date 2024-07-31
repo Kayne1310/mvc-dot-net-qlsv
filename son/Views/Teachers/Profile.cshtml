@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Profile";
-    Layout = "/Views/Shared/LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/LayoutTeacher.cshtml";
 }
 
 <style>
@@ -38,8 +38,8 @@
         cursor: pointer;
     }
 </style>
-<div class="container rounded bg-white mt-5">
-    <div>
+
+
         <form asp-action="Profile" asp-controller="Teachers">
             <div class="col-md-12">
                 <div class="p-3 py-5">
@@ -64,8 +64,8 @@
                 </div>
             </div>
         </form>
-    </div>
-</div>
+
+
 
 
 

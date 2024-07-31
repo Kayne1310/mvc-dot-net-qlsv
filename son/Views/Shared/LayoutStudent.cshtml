@@ -35,15 +35,14 @@
                 <div class="d-flex">
                     <!-- LOGO -->
                     <div class="navbar-brand-box">
-                        <a href="index.html" class="logo logo-dark">
+@*                         <a href="index.html" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="~/assets/images/btec.png" style="height: 50px;width: 50px;">
+                                <img src="~/assets/images/btec.png" alt=""  style="height: 50px;width: 50px;">
                             </span>
                             <span class="logo-lg">
                                 <img src="~/assets/images/btec.png" alt="" height="17">
                             </span>
                         </a>
-
 
                         <a href="index.html" class="logo logo-light">
                             <span class="logo-sm">
@@ -52,7 +51,7 @@
                             <span class="logo-lg">
                                 <img src="~/assets/images/btec.png" alt="" style="height: 50px;width: 150px;">
                             </span>
-                        </a>
+                        </a> *@
                     </div>
 
                     <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
@@ -223,18 +222,18 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" asp-action="Profile" asp-controller="Students">
                                 <i class="dripicons-user d-inline-block text-muted me-2"></i>
                                 Profile
                             </a>
 
 
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" asp-action="ChangePassword" asp-controller="Students">
                                 <i class="dripicons-lock d-inline-block text-muted me-2"></i>
                                 Change Password
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" asp-action="Logout" asp-controller="Students">
                                 <i class="dripicons-exit d-inline-block text-muted me-2"></i>
                                 Logout
                             </a>
@@ -256,13 +255,12 @@
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
-                        <li class="menu-title">Admin</li>
 
                         <li>
-                            <a href="javascript: void(0);" class="waves-effect">
+                            <a asp-action="HomePage" asp-controller="Students"  class="waves-effect">
                                 <i class="mdi mdi-speedometer"></i>
 
-                                <span>Dashboards</span>
+                                <span>Home</span>
                             </a>
 
                         </li>
@@ -270,48 +268,21 @@
 
                         <!-- UI Elements -->
                         <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <a asp-action="Index" asp-controller="Grades"  class="waves-effect">
                                 <i class="mdi mdi-briefcase-check"></i>
-                                <span>Student</span>
+                                <span>Grade</span>
                             </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="ui-alerts.html">Management Student</a></li>
-                                <li><a href="ui-buttons.html">Register Student</a></li>
 
-                            </ul>
                         </li>
 
                         <!-- Advanced UI -->
                         <li>
-                            <a href="javascript: void(0);" class="waves-effect">
+                            <a asp-action="Index" asp-controller="Classes"  class="waves-effect">
                                 <i class="mdi mdi-buffer"></i>
-                                <span>Management Course</span>
+                                <span>Class</span>
 
                             </a>
                         </li>
-
-                        <!-- Forms -->
-                        <li>
-                            <a href="javascript: void(0);" class="waves-effect">
-                                <i class="mdi mdi-clipboard-outline"></i>
-
-                                <span>Management Class</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                            </ul>
-                        </li>
-
-                        <!-- Charts -->
-                        <li>
-                            <a href="javascript: void(0);" class="waves-effect">
-                                <i class="mdi mdi-chart-arc"></i>
-                                <span>Management Grade</span>
-                            </a>
-
-                        </li>
-
-
-
 
 
                     </ul>
@@ -324,22 +295,13 @@
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
-            <div class="page-content">
-                <!-- content  -->
-                @RenderBody()
-                <!-- End Page-content -->
 
-            </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <script>document.write(new Date().getFullYear())</script> © BTEC.
-                        </div>
-                        >
-                    </div>
-                </div>
-            </footer>
+            <!-- content  -->
+            @RenderBody()
+            <!-- End Page-content -->
+
+
+
         </div>
         <!-- end main content-->
 
@@ -393,9 +355,10 @@
     </div>
     <!-- /Right-bar -->
     <!-- Right bar overlay-->
-    <div class="rightbar-overlay"></div>
 
     @RenderSection("Scripts", required: false)
+
+    <div class="rightbar-overlay"></div>
 
     <!-- JAVASCRIPT -->
     <script src="~/assets/libs/jquery/jquery.min.js"></script>

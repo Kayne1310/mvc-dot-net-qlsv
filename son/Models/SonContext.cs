@@ -19,8 +19,6 @@ public partial class SonContext : DbContext
 
     public virtual DbSet<Course> Courses { get; set; }
 
-    public virtual DbSet<Enrollment> Enrollments { get; set; }
-
     public virtual DbSet<Grade> Grades { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
@@ -28,7 +26,6 @@ public partial class SonContext : DbContext
     public virtual DbSet<Student> Students { get; set; }
 
     public virtual DbSet<Teacher> Teachers { get; set; }
-
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -40,6 +37,9 @@ public partial class SonContext : DbContext
 
             entity.HasIndex(e => e.TeacherId, "IX_Classes_TeacherId");
 
+            entity.Property(e => e.ClassName)
+                .HasMaxLength(100)
+                .IsUnicode(false);
             entity.Property(e => e.RoomName)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -59,39 +59,24 @@ public partial class SonContext : DbContext
             entity.HasKey(e => e.CourseId).HasName("PK__Courses__C92D71A70CC0D3A2");
         });
 
-        modelBuilder.Entity<Enrollment>(entity =>
-        {
-            entity.HasKey(e => e.EnrollmentId).HasName("PK__Enrollme__7F68771B623778C9");
-
-            entity.HasIndex(e => e.ClassId, "IX_Enrollments_ClassId");
-
-            entity.HasIndex(e => e.StudentId, "IX_Enrollments_StudentId");
-
-            entity.HasOne(d => d.Class).WithMany(p => p.Enrollments)
-                .HasForeignKey(d => d.ClassId)
-                .HasConstraintName("FK__Enrollmen__Class__5812160E");
-
-            entity.HasOne(d => d.Student).WithMany(p => p.Enrollments)
-                .HasForeignKey(d => d.StudentId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Enrollmen__Stude__571DF1D5");
-        });
-
         modelBuilder.Entity<Grade>(entity =>
         {
             entity.HasKey(e => e.GradeId).HasName("PK__Grades__54F87A578FFC1275");
 
             entity.Property(e => e.GradeStudent).HasColumnType("decimal(3, 2)");
 
+            entity.HasOne(d => d.Class).WithMany(p => p.Grades)
+                .HasForeignKey(d => d.ClassId)
+                .HasConstraintName("FK_Grades_Classes");
+
             entity.HasOne(d => d.Course).WithMany(p => p.Grades)
                 .HasForeignKey(d => d.CourseId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Grades__CourseId__5BE2A6F2");
 
-            entity.HasOne(d => d.Enrollment).WithMany(p => p.Grades)
-                .HasForeignKey(d => d.EnrollmentId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Grades__Enrollme__5AEE82B9");
+            entity.HasOne(d => d.Student).WithMany(p => p.Grades)
+                .HasForeignKey(d => d.StudentId)
+                .HasConstraintName("FK_Grades_Students");
         });
 
         modelBuilder.Entity<Role>(entity =>
