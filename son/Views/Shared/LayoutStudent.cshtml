@@ -268,22 +268,14 @@
 
                         <!-- UI Elements -->
                         <li>
-                            <a asp-action="Index" asp-controller="Grades"  class="waves-effect">
+                            <a asp-action="GradeStudent" asp-controller="Grades"  class="waves-effect">
                                 <i class="mdi mdi-briefcase-check"></i>
                                 <span>Grade</span>
                             </a>
 
                         </li>
 
-                        <!-- Advanced UI -->
-                        <li>
-                            <a asp-action="Index" asp-controller="Classes"  class="waves-effect">
-                                <i class="mdi mdi-buffer"></i>
-                                <span>Class</span>
-
-                            </a>
-                        </li>
-
+                      
 
                     </ul>
                 </div>
@@ -295,13 +287,13 @@
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
-
+            <div class="page-content">
             <!-- content  -->
             @RenderBody()
             <!-- End Page-content -->
 
 
-
+            </div>
         </div>
         <!-- end main content-->
 

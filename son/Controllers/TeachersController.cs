@@ -59,8 +59,8 @@ namespace son.Controllers
 				return View();
 
 		}
-		#endregion
-
+        #endregion
+        [Authorize(Roles ="Teachers")]
 		#region Register for Student
 		[HttpGet]
 		public IActionResult RegisterST()
@@ -104,7 +104,7 @@ namespace son.Controllers
         #endregion
 
         #region Register for Teacher
-
+        [Authorize(Roles = "Teachers")]
         [HttpGet]
         public IActionResult RegisterTE()
         {
@@ -150,6 +150,7 @@ namespace son.Controllers
         #region Profile
 
         [HttpGet]
+        [Authorize(Roles = "Teachers")]
         public async Task<IActionResult> Profile()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -228,6 +229,7 @@ namespace son.Controllers
         #endregion
 
         #region Logout
+        [Authorize(Roles = "Teachers")]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
@@ -237,7 +239,9 @@ namespace son.Controllers
 
         #region Change password
 
+
         [HttpGet]
+        [Authorize(Roles = "Teachers")]
         public IActionResult ChangePassword()
         {
             return View();
@@ -289,6 +293,7 @@ namespace son.Controllers
         #region Management Teacher
 
         [HttpGet]
+        [Authorize(Roles = "Teachers")]
         public async Task<IActionResult> ManagementTE()
         {
             var teachers = await _context.Teachers
@@ -333,6 +338,7 @@ namespace son.Controllers
         #region Edit Teacher
 
         [HttpGet]
+        [Authorize(Roles = "Teachers")]
         public async Task<IActionResult> EditTE(int id)
         {
             var teacher = await _context.Teachers
@@ -471,6 +477,7 @@ namespace son.Controllers
         #region Management Student
 
         [HttpGet]
+        [Authorize(Roles = "Teachers")]
         public async Task<IActionResult> ManagementST()
         {
             var students = await _context.Students
@@ -518,6 +525,7 @@ namespace son.Controllers
         #region Edit Student
 
         [HttpGet]
+        [Authorize(Roles = "Teachers")]
         public async Task<IActionResult> EditST(int id)
         {
             var student = await _context.Students

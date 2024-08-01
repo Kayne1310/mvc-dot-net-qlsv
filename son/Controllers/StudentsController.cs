@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using son.Data;
 using son.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace son.Controllers
 {
@@ -23,7 +24,7 @@ namespace son.Controllers
         }
 
         #region Login
-
+        
         [HttpGet]
         public IActionResult Login()
         {
@@ -62,7 +63,7 @@ namespace son.Controllers
 
         }
         #endregion
-
+        [Authorize(Roles="Students")]
         #region Profile
         [HttpGet]
         public async Task<IActionResult> Profile()
@@ -145,6 +146,7 @@ namespace son.Controllers
         #endregion
 
         #region Logout
+        [Authorize(Roles = "Students")]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
@@ -202,7 +204,7 @@ namespace son.Controllers
         }
 
         #endregion
-
+        [Authorize(Roles = "Students")]
         [HttpGet]
         public IActionResult HomePage()
         {

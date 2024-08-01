@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,7 @@ namespace son.Controllers
         }
 
         // GET: Classes
+        [Authorize(Roles = "Teachers")]
         public async Task<IActionResult> Index()
         {
             var classes = _context.Classes
@@ -44,27 +46,9 @@ namespace son.Controllers
             return View(classes);
         }
 
-        // GET: Classes/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var @class = await _context.Classes
-                .Include(c => c.Course)
-                .Include(c => c.Teacher)
-                .FirstOrDefaultAsync(m => m.ClassId == id);
-            if (@class == null)
-            {
-                return NotFound();
-            }
-
-            return View(@class);
-        }
 
         // GET: Classes/Create
+        [Authorize(Roles = "Teachers")]
         public IActionResult Create()
         {
             ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName");
@@ -89,6 +73,7 @@ namespace son.Controllers
 
 
         // GET: Classes/Edit/5
+        [Authorize(Roles = "Teachers")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using son.Data;
 using son.Models;
 using son.ViewModels;
@@ -21,7 +25,7 @@ namespace son.Controllers
         }
 
         // GET: Grades
-
+        [Authorize(Roles = "Teachers")]
         public async Task<IActionResult> Index()
         {
             var sonContext = _context.Grades
@@ -42,6 +46,7 @@ namespace son.Controllers
 
 
         // GET: Grades/Create
+        [Authorize(Roles = "Teachers")]
         public IActionResult Create()
         {
             ViewData["ClassId"] = new SelectList(_context.Classes, "ClassId", "ClassName");
@@ -72,6 +77,7 @@ namespace son.Controllers
         }
 
         // GET: Grades/Edit/5
+        [Authorize(Roles = "Teachers")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -164,6 +170,38 @@ namespace son.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        [Authorize(Roles = "Students")]
+        public async Task<IActionResult> GradeStudent()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Students");
+            }
+            var studentId = int.Parse(userId);
+            var GradeStudent = await _context.Grades
+                             .Include(g => g.Student)
+                             .Include(g=>g.Class)
+                             .Include(g=>g.Course)
+                             .FirstOrDefaultAsync(m => m.GradeId == studentId);
+
+            var model = new List<GradeViewModel>
+         {
+        new GradeViewModel
+        {
+            ClassName = GradeStudent.Class.ClassName,
+            GradeStudent = GradeStudent.GradeStudent,
+            CourseName = GradeStudent.Course.CourseName,
+            GradeId = GradeStudent.GradeId,
+            StudentName=GradeStudent.Student.Name,
+            // You can add other necessary properties here
+        }
+             };
+            ViewData["StudentId"] = GradeStudent.Student.Name;
+            return View(model);
+        }
+
 
         private bool GradeExists(int id)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace son.Controllers
         }
 
         // GET: Courses
+        [Authorize(Roles = "Teachers")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Courses.ToListAsync());
@@ -44,6 +46,7 @@ namespace son.Controllers
         }
 
         // GET: Courses/Create
+        [Authorize(Roles = "Teachers")]
         public IActionResult Create()
         {
             return View();
@@ -66,6 +69,7 @@ namespace son.Controllers
         }
 
         // GET: Courses/Edit/5
+        [Authorize(Roles = "Teachers")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
